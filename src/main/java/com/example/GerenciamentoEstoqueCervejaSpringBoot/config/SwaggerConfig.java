@@ -1,47 +1,43 @@
 package com.example.GerenciamentoEstoqueCervejaSpringBoot.config;
 
 
-import springfox.documentation.service.Contact;
+
+
+
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import static springfox.documentation.builders.RequestHandlerSelectors.basePackage;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
-@EnableSwagger2
 public class SwaggerConfig {
-
-    private static final String BASE_PACKAGE = "one.digitalinnovation.beerstock.controller";
-    private static final String API_TITLE = "Beer Stock API";
-    private static final String API_DESCRIPTION = "REST API for beer stock management";
-    private static final String CONTACT_NAME = "Rodrigo Peleias";
-    private static final String CONTACT_GITHUB = "https://gtihub.com/rpeleias";
-    private static final String CONTACT_EMAIL = "rodrigo.peleis@gmail.com";
+    
+    
+    private static final String API_TITLE = "API Estoque de Cerveja";
+    private static final String API_DESCRIPTION = "API REST para gerenciamento de estoque de cerveja";
+    private static final String CONTACT_NAME = "Harrison Mitchell";
+    private static final String CONTACT_GITHUB = "https://github.com/harrisonmk";
+    private static final String CONTACT_EMAIL = "harrison.mitchell@hotmail.com";
+    
+    Contact cont = new Contact();
+    
 
     @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(basePackage(BASE_PACKAGE))
-                .paths(PathSelectors.any())
-                .build()
-                .apiInfo(buildApiInfo());
+    public OpenAPI customOpenApi() {
+
+        return new OpenAPI()
+                .info(new Info()
+                        .title(API_TITLE)
+                        .version("versao 1.0")
+                        .description(API_DESCRIPTION)
+                        .termsOfService("http://swagger.io/terms")
+                        .contact(cont.name(CONTACT_NAME).url(CONTACT_GITHUB).email(CONTACT_EMAIL))
+                        .license(new License().name("Apache 2.0").url("http://springdoc.org")));
+
     }
 
-    private ApiInfo buildApiInfo() {
-        return new ApiInfoBuilder()
-                .title(API_TITLE)
-                .description(API_DESCRIPTION)
-                .version("1.0.0")
-                .contact(new Contact(CONTACT_NAME, CONTACT_GITHUB, CONTACT_EMAIL))
-                .build();
-    }
-    
     
 
 }

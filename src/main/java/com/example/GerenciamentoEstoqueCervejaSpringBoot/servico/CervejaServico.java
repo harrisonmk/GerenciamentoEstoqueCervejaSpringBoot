@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class CervejaService {
+public class CervejaServico {
     
     
     

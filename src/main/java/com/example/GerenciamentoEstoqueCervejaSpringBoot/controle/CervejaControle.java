@@ -6,7 +6,7 @@ import com.example.GerenciamentoEstoqueCervejaSpringBoot.dto.QuantidadeDTO;
 import com.example.GerenciamentoEstoqueCervejaSpringBoot.excecoes.BeerAlreadyRegisteredException;
 import com.example.GerenciamentoEstoqueCervejaSpringBoot.excecoes.BeerNotFoundException;
 import com.example.GerenciamentoEstoqueCervejaSpringBoot.excecoes.BeerStockExceededException;
-import com.example.GerenciamentoEstoqueCervejaSpringBoot.servico.CervejaService;
+import com.example.GerenciamentoEstoqueCervejaSpringBoot.servico.CervejaServico;
 import java.util.List;
 import javax.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -27,10 +27,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/beers")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class CervejaController implements CervejaControleDocs {
+public class CervejaControle implements CervejaControleDocs {
     
     
-    private final CervejaService servico;
+    private final CervejaServico servico;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -38,7 +38,7 @@ public class CervejaController implements CervejaControleDocs {
         return servico.createBeer(beerDTO);
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/{nome}")
     public CervejaDTO findByName(@PathVariable String nome) throws BeerNotFoundException {
         return servico.findByNome(nome);
     }

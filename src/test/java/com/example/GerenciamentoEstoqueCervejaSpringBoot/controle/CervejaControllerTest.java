@@ -4,7 +4,7 @@ import com.example.GerenciamentoEstoqueCervejaSpringBoot.builder.CervejaDTOBuild
 import com.example.GerenciamentoEstoqueCervejaSpringBoot.dto.CervejaDTO;
 import com.example.GerenciamentoEstoqueCervejaSpringBoot.dto.QuantidadeDTO;
 import com.example.GerenciamentoEstoqueCervejaSpringBoot.excecoes.BeerNotFoundException;
-import com.example.GerenciamentoEstoqueCervejaSpringBoot.servico.CervejaService;
+import com.example.GerenciamentoEstoqueCervejaSpringBoot.servico.CervejaServico;
 import static com.example.GerenciamentoEstoqueCervejaSpringBoot.utils.JsonConvertionUtils.asJsonString;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -43,10 +43,10 @@ public class CervejaControllerTest {
     private MockMvc mockMvc;
 
     @Mock
-    private CervejaService beerService;
+    private CervejaServico beerService;
 
     @InjectMocks
-    private CervejaController beerController;
+    private CervejaControle beerController;
 
     @BeforeEach
     void setUp() {
